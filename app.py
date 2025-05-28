@@ -9,7 +9,8 @@ from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.badges import badge
 from streamlit_extras.stylable_container import stylable_container
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+# from agno.models.anthropic import Claude
+from agno.models.openai import OpenAIChat
 from agno.tools.tavily import TavilyTools
 from constants import SYSTEM_PROMPT, INSTRUCTIONS
 
@@ -26,7 +27,8 @@ if 'image_path' not in st.session_state:
 
 # Setup agent
 agent = Agent(
-    model=Claude(id="claude-3-5-haiku-20241022", api_key=st.secrets["ANTHROPIC_API_KEY"]),
+    # model=Claude(id="claude-3-5-haiku-20241022", api_key=st.secrets["ANTHROPIC_API_KEY"]),
+    model=OpenAIChat(id="o4-mini-2025-04-16", api_key=st.secrets["OPENAI_API_KEY"]),
     tools=[TavilyTools()],
     markdown=True,
     description=SYSTEM_PROMPT,
